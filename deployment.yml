@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: three-tier-app-namespace
+  namespace: my-app-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: three-tier-app
+  template:
+    metadata:
+      labels:
+        app: three-tier-app
+    spec:
+      containers:
+      - name: web
+        image: YOUR_DOCKER_USERNAME/three-tier-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
