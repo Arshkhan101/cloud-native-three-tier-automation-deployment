@@ -17,3 +17,23 @@ This project is a 100% Free Tier safe cloud infrastructure and automated CI/CD p
 2. **Containerization (Docker):** Application workloads are packaged into isolated Docker containers.
 3. **Orchestration (Kubernetes):** Containers are managed and orchestrated on the EC2 server using a lightweight Kubernetes setup (Minikube/K3s).
 4. **CI/CD Pipeline (GitHub Actions):** Whenever a developer pushes code to the main branch, the GitHub Actions workflow triggers automatically. It builds and pushes the image to Docker Hub, then securely connects to the EC2 instance via SSH to update the Kubernetes deployment (`kubectl rollout restart`).
+
+## ⚙️ How to Setup & Run (K3s & Kubernetes Commands Guide)
+Agar aapko is project ko apne server par manually set up karna pade, toh aap in step-by-step commands ka use kar sakte hain:
+
+### 1. K3s Installation
+AWS EC2 server par lightweight Kubernetes (K3s) download aur install command.
+```bash
+curl -sfL https://get.k3s.io | sh -
+### 2. Check Cluster Status (Nodes)
+Run this command after installation to verify that the cluster is active, healthy, and the status shows Ready:
+```bash
+sudo kubectl get nodes
+### 3. Restart K3s Service
+Agar kabhi K3s ki service ko restart karna pade, toh yeh command use hoti hai:
+```bash
+sudo systemctl restart k3s
+### 6. Uninstall K3s (Cleanup)
+Agar kabhi pura setup hata kar server ko clean karna ho, toh is script ka use hota hai:
+```bash
+sudo /usr/local/bin/k3s-uninstall.sh
